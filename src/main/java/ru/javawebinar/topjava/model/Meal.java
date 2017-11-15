@@ -4,8 +4,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public class Meal {
-    private Integer id;
+public class Meal extends AbstractBaseEntity {
+
+    private Integer userId;
 
     private final LocalDateTime dateTime;
 
@@ -18,7 +19,12 @@ public class Meal {
     }
 
     public Meal(Integer id, LocalDateTime dateTime, String description, int calories) {
-        this.id = id;
+        this(id, null, dateTime, description, calories);
+    }
+
+    public Meal(Integer id, Integer userId, LocalDateTime dateTime, String description, int calories) {
+        super(id);
+        this.userId = userId == null ? 10000 : userId;
         this.dateTime = dateTime;
         this.description = description;
         this.calories = calories;
@@ -30,6 +36,14 @@ public class Meal {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public LocalDateTime getDateTime() {
@@ -60,6 +74,7 @@ public class Meal {
     public String toString() {
         return "Meal{" +
                 "id=" + id +
+                ", userId=" + userId +
                 ", dateTime=" + dateTime +
                 ", description='" + description + '\'' +
                 ", calories=" + calories +
