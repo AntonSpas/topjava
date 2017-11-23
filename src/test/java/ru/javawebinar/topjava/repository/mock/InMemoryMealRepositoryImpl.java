@@ -38,7 +38,6 @@ public class InMemoryMealRepositoryImpl implements MealRepository {
         save(new Meal(LocalDateTime.of(2015, Month.JUNE, 1, 21, 0), "Админ ужин", 1500), ADMIN_ID);
     }
 
-
     @Override
     public Meal save(Meal meal, int userId) {
         Map<Integer, Meal> meals = repository.computeIfAbsent(userId, ConcurrentHashMap::new);
